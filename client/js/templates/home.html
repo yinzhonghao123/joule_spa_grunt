@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="css/templates/home.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<div id="homeDiv">
+	<!-- 头部 #start -->
+	<header>
+		<div class="addr">
+			<span class="icon icon-addr"></span>
+			<a href="#/location_addr" ng-bind="data.address.name"></a>
+		</div>
+		<div class="user">
+			<span class="icon icon-user"></span>
+			<a href="#/personal">个人中心</a>
+		</div>
+	</header>
+	<!-- 头部 #end -->
+
+	<!-- 轮播 #start -->
+	<div class="banner">
+		<div class="swiper-container" id="bannerSwiper">
+			<div class="swiper-wrapper" id="slides">
+				<div class="swiper-slide" ng-repeat="banner in banners">
+					<a href="#">
+						<img src="img/default.jpg" ng-src="{{banner.img_src}}"/>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Add Pagination -->
+		<div class="swiper-pagination"></div>
+	</div>
+	<!-- 轮播 #end -->
+
+	<!-- 菜品列表 #start -->
+	<div class="wrap meals">
+		<div id="info">
+			<ul>
+				<li ng-repeat="meal in data.meals">
+					<div class="meal-item">
+						<a class="img meal-img" href="javascript:">
+							<img src="img/default.jpg" ng-src="{{meal.picture}}"/>
+						</a>
+						<div class="meal-name" ng-bind="meal.mealName"></div>
+						<div class="sales" ng-bind="'月售'+meal.sales+'份'"></div>
+						<div class="buy">
+							<div class="price">
+								&yen;
+								<span class="ml2 f150 fb" ng-bind="meal.price"></span>
+								<span>
+									<s ng-bind="'￥'+meal.originalPrice"></s>
+								</span>
+							</div>
+							<div class="option-cart" >
+								<div class="btn-cart in fr" ng-class="{incart : meal.count>0}">
+									<a class="jian" ng-click="updateMealCount(false, meal, $event)"></a>
+									<span class="count" ng-bind="meal.count"></span>
+									<a class="jia" ng-click="updateMealCount(true, meal, $event)"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<div class="clearfix"></div>
+			</ul>
+		</div>
+	</div>
+	<!-- 菜品列表 #end -->
+
+	<!-- 购物车 #start -->
+	<footer>
+		<div class="blurrycontent"></div>
+		<div id="cart" style="position:relative">
+			<!-- 购物车图标-->
+			<div class="icon-cart-box"  ng-click="changeState()">
+				<div class="cart-num" id="total_count" ng-bind="cart.totalCount"></div>
+				<div class="icon-cart">
+					<a class="btn-cart-pop">
+					</a>
+				</div>
+			</div>
+			<div class="table w100 cartItems" id="cartItems" ng-show="isOpen">
+				<div class="swiper-container" id="cartSwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="table w100">
+								<div class="row" ng-repeat="meal in cart.meals">
+									<div class="cell" ng-bind="meal.mealName"></div>
+									<div class="cell">
+										&yen;<span class="ml2 f120 fb" ng-bind="meal.price"></span>
+									</div>
+									<div class="cell tr">
+										<div class="option-cart fr">
+											<div class="btn-cart in fr incart">
+												<a class="jian cart-num-btn" ng-click="updateMealCount(false, meal, $event)"></a>
+												<span class="count" ng-bind="meal.count"></span>
+												<a class="jia cart-num-btn" ng-click="updateMealCount(true, meal,$event)"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Add Scroll Bar -->
+			<div class="swiper-scrollbar"></div>
+
+			<div class="bottom">
+				<div class="table w100">
+					<div class="cell total tc fb f120" >
+						共计：&yen;<span id="total_price" ng-bind="cart.totalPrice"></span>元</div>
+					<div class="cell tr">
+						<a href="javascript:" class="btn-toPay" ng-class="{able : cart.totalCount>0}" ng-click="toOrderConfirm()">选好了</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- 购物车 #end -->
+</div>

@@ -1,0 +1,23 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "expr" : true,
+  "immed": true,
+  "newcap": true,
+  "noempty": true,
+  "noarg": true,
+  "regexp": true,
+  "browser": true,
+  "devel": true,
+  "node": true,
+
+  //使用未定义的变量
+  "undef": true,
+
+  //语句后面没有分号
+  "asi": true,
+  "boss": true,
+  //预定义的全局变量(不检查)
+  "predef": [ "define", "BMap", "angular", "BMAP_STATUS_SUCCESS"]
+}

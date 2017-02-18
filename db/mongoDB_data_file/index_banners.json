@@ -1,0 +1,2 @@
+{"_id": {"$oid": "575f7085f8a14116283dab9c"}, "img_src": "img/bar1.jpg", "link": null, "sort": true}
+{ "_id" : { "$oid" : "575f7085f8a14116283dab9d" }, "img_src" : "img/bar2.png", "link" : null, "sort" : false }
